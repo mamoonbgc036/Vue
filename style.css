@@ -1,7 +1,37 @@
+.btnStyle{
+    background-color: aqua;
+    padding: 8px;
+    position: relative;
+}
+.btnStyleOne{
+    background-color: green;
+    padding: 8px;
+    position: relative;
+}
+
 .text-green{
     color: green;
 }
-
 .text-red{
     color: red;
 }
+
+@keyframes spinner {
+    to {transform: rotate(360deg);}
+  }
+   
+  .isLoading:before {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    margin-left: -10px;
+    border-radius: 50%;
+    border: 5px solid white;
+    border-top-color: rgb(38, 0, 255);
+    animation: spinner .6s linear infinite;
+  }

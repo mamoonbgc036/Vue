@@ -10,48 +10,11 @@
 </head>
 <body>
     <div id="app">
-        <div id="center" v-show="inProgress.length">
-            <h4>In Progress</h4>
-            <li v-for="assignment in inProgress" :key="assignment.id">
-                <label>
-                    {{assignment.name}}
-                    <input type="checkbox" v-model="assignment.completed">
-                </label>
-            </li>
-        </div>
-        <div id="center" v-show="completed.length">
-            <h4>Completed</h4>
-            <li v-for="assignment in completed" :key="assignment.id">
-                <label>
-                    {{assignment.name}}
-                    <input type="checkbox" v-model="assignment.completed">
-                </label>
-            </li>
-        </div>
+       
     </div>
-    <script>
-        Vue.createApp({
-            data(){
-                return {
-                   Assignments : [
-                    {name:'Step one', completed: false, id:1},
-                    {name:'Step two', completed: false, id:2},
-                    {name:'Step three', completed: false, id:3}
-                   ]
-                }
-            },
-            methods:{
-           
-            },
-            computed:{
-                inProgress(){
-                    return this.Assignments.filter(a => !a.completed)
-                },
-                completed(){
-                    return this.Assignments.filter(a=>a.completed)
-                }
-            }
-        }).mount('#app')
+    <script type="module">
+        import App from './js/components/App.js'
+        Vue.createApp(App).mount('#app')
     </script>
 </body>
 </html>
