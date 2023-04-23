@@ -4,19 +4,54 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./vue/vue.js"></script>
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 <body>
     <div id="app">
-        {{fruit}}
-        <img :src="image" alt="">
-        <p v-if="inventory>12">In stock</p>
-        <p v-else>Out of stock</p>
+        <div id="center" v-show="inProgress.length">
+            <h4>In Progress</h4>
+            <li v-for="assignment in inProgress" :key="assignment.id">
+                <label>
+                    {{assignment.name}}
+                    <input type="checkbox" v-model="assignment.completed">
+                </label>
+            </li>
+        </div>
+        <div id="center" v-show="completed.length">
+            <h4>Completed</h4>
+            <li v-for="assignment in completed" :key="assignment.id">
+                <label>
+                    {{assignment.name}}
+                    <input type="checkbox" v-model="assignment.completed">
+                </label>
+            </li>
+        </div>
     </div>
-    <script src="./main.js"></script>
     <script>
-        App.mount('#app');
+        Vue.createApp({
+            data(){
+                return {
+                   Assignments : [
+                    {name:'Step one', completed: false, id:1},
+                    {name:'Step two', completed: false, id:2},
+                    {name:'Step three', completed: false, id:3}
+                   ]
+                }
+            },
+            methods:{
+           
+            },
+            computed:{
+                inProgress(){
+                    return this.Assignments.filter(a => !a.completed)
+                },
+                completed(){
+                    return this.Assignments.filter(a=>a.completed)
+                }
+            }
+        }).mount('#app')
     </script>
 </body>
 </html>
