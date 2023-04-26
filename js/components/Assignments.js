@@ -1,28 +1,45 @@
 import AssignmentList from "./AssignmentList.js"
+import AssignmentCreate from "./AssignmentCreate.js"
 export default{
     components:{
-        AssignmentList
+        'assignment-list':AssignmentList,
+        'assignment-create' : AssignmentCreate
     },
     template:`
-        <assignment-list :assignments="filter.inProgress" title="In Progress"></assignment-list>
-        <assignment-list :assignments="filter.complete" title="Completed"></assignment-list>
+    <div id="main">
+        <assignment-list :assignments="filter.inProgress" title="In Progress">
+            <assignment-create @changes="plus"></assignment-create>
+        </assignment-list>
+        <assignment-list :assignments="filter.complete" title="Complete"></assignment-list>       
+    </div>
     `,
     data(){
         return{
-            assignments:[
-                {name:'Step one', complete:false, id:1},
-                {name:'Step two', complete:false, id:2},
-                {name:'Step three', complete:false, id:3}
-            ]
+            assignments:[],
         }
     },
-
     computed:{
         filter(){
             return{
                 inProgress: this.assignments.filter(a=>!a.complete),
-                complete: this.assignments.filter(a=>a.complete)
+                complete : this.assignments.filter(a=>a.complete)
             }
         }
+    },
+    methods:{
+        plus(names){
+            this.assignments.push({
+               name: names,
+               complete: false,
+               id: this.assignments.length+1
+            })
+        }
+    },
+    created(){
+         fetch('http://localhost:3000/assignments')
+            .then(response=>response.json())
+            .then(assignments=>{
+                this.assignments = assignments
+            })
     }
 }

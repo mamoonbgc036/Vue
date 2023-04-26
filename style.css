@@ -1,3 +1,13 @@
+#main{
+  display: flex;
+  justify-content: space-evenly;
+}
+form input{
+  height: 30px;
+}
+form button{
+  padding: 8px;
+}
 .btnStyle{
     background-color: aqua;
     padding: 8px;
@@ -34,4 +44,8 @@
     border: 5px solid white;
     border-top-color: rgb(38, 0, 255);
     animation: spinner .6s linear infinite;
+  }
+
+  .isActive{
+    background-color: aqua;
   }

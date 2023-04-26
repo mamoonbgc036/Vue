@@ -8,6 +8,6 @@ export default{
     </li>
     `,
     props:{
-        assignment:Object
+        assignment:Array,
     }
 }
